@@ -4,9 +4,7 @@ using System;
 using System.CodeDom;
 using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Threading.Tasks;
-using log4net.Core;
+using com.LandonKey.SocksWebProxy;
 
 namespace Abot.Core
 {
@@ -227,6 +225,9 @@ namespace Abot.Core
                 request.Credentials = new NetworkCredential(_config.LoginUser, _config.LoginPassword);
                 request.UseDefaultCredentials = false;
             }
+
+			if(_config.UseTorProxy)
+				request.Proxy = new SocksWebProxy();
 
             return request;
         }

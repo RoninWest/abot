@@ -90,7 +90,14 @@ namespace Abot.Core
         {
             get { return (string)this["loginPassword"]; }
         }
+
+		[ConfigurationProperty("useTorProxy", DefaultValue = false)]
+		public bool UseTorProxy
+		{
+			get { return (bool)this["useTorProxy"]; }
+		}
     }
+
     [Serializable]
     public class PolitenessElement : ConfigurationElement
     {

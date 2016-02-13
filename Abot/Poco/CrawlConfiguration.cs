@@ -230,6 +230,10 @@ namespace Abot.Poco
         /// The password to be used for autorization 
         /// </summary>
         public string LoginPassword { get; set; }
+		/// <summary>
+		/// Instruct crawler to use Tor proxy by including SocksWebProxy
+		/// </summary>
+		public bool UseTorProxy { get; set; }
 
         #endregion
     }
