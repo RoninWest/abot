@@ -1,4 +1,4 @@
-#Abot [![Build Status](https://ci.appveyor.com/api/projects/status/b1ukruawvu6uujn0?svg=true)](https://ci.appveyor.com/project/sjdirect/abot)
+#Abot [![Build status](https://ci.appveyor.com/api/projects/status/2t0muc5p5gt9ch9v?svg=true)](https://ci.appveyor.com/project/ronin1/abot)
 
 *Please star this project!!*
 
