@@ -121,7 +121,7 @@ namespace Abot.Core
             {
                 dentitizedHref = HtmlEntity.DeEntitize(hrefValue);
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
                 _logger.InfoFormat("Error dentitizing uri: {0} This usually means that it contains unexpected characters", hrefValue);
             }

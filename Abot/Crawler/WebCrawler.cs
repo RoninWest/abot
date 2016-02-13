@@ -702,7 +702,7 @@ namespace Abot.Crawler
                     _scheduler.Add(crawledPage);
                 }   
             }
-            catch (OperationCanceledException oce)
+            catch (OperationCanceledException)
             {
                 _logger.DebugFormat("Thread cancelled while crawling/processing page [{0}]", pageToCrawl.Uri);
                 throw;
