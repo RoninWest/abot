@@ -40,12 +40,12 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Org.Mentalis, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SocksWebProxy.1.0.15.0\lib\net46\Org.Mentalis.dll</HintPath>
+    <Reference Include="Org.Mentalis, Version=1.0.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SocksWebProxy.1.0.18.0\lib\net45\Org.Mentalis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SocksWebProxy, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SocksWebProxy.1.0.15.0\lib\net46\SocksWebProxy.dll</HintPath>
+    <Reference Include="SocksWebProxy, Version=1.0.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SocksWebProxy.1.0.18.0\lib\net45\SocksWebProxy.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
