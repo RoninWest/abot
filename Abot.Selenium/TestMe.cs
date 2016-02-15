@@ -23,8 +23,15 @@ namespace Abot.Selenium
 		[Test]
 		public void ClickLink()
 		{
-			IEnumerable<IWebElement> rows = _w.FindElements(By.CssSelector(".content .row"));
-			CollectionAssert.IsNotEmpty(rows);
+			IEnumerable<IWebElement> links = _w.FindElements(By.CssSelector(".content .row A.hdrlnk"));
+			CollectionAssert.IsNotEmpty(links);
+			IWebElement el = links.FirstOrDefault();
+			Assert.IsNotNull(el);
+			if(el.Displayed && el.Enabled)
+			{
+				CollectionAssert.IsNotEmpty(el.Text);
+				el.Click();
+			}
 		}
 
 		[OneTimeTearDown]
