@@ -17,8 +17,8 @@ namespace Abot.Demo
             IWebCrawler crawler;
 
             //Uncomment only one of the following to see that instance in action
-            crawler = GetDefaultWebCrawler();
-            //crawler = GetManuallyConfiguredWebCrawler();
+            //crawler = GetDefaultWebCrawler();
+            crawler = GetManuallyConfiguredWebCrawler();
             //crawler = GetCustomBehaviorUsingLambdaWebCrawler();
 
             //Subscribe to any of these asynchronous events, there are also sychronous versions of each.

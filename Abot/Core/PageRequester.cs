@@ -82,7 +82,7 @@ namespace Abot.Core
             {
                 request = BuildRequestObject(uri);
                 crawledPage.RequestStarted = DateTime.Now;
-                response = (HttpWebResponse)request.GetResponse();
+                response = request.GetResponse() as HttpWebResponse;
                 ProcessResponseObject(response);
             }
             catch (WebException e)
@@ -90,7 +90,7 @@ namespace Abot.Core
                 crawledPage.WebException = e;
 
                 if (e.Response != null)
-                    response = (HttpWebResponse)e.Response;
+                    response = e.Response as HttpWebResponse;
 
                 _logger.DebugFormat("Error occurred requesting url [{0}]", uri.AbsoluteUri);
                 _logger.Debug(e);
@@ -203,7 +203,7 @@ namespace Abot.Core
 
         protected virtual HttpWebRequest BuildRequestObject(Uri uri)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            HttpWebRequest request = WebRequest.Create(uri) as HttpWebRequest;
             request.AllowAutoRedirect = _config.IsHttpRequestAutoRedirectsEnabled;
             request.UserAgent = _config.UserAgentString;
             request.Accept = "*/*";
