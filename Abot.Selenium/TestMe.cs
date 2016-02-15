@@ -20,72 +20,15 @@ namespace Abot.Selenium
 	public class TestMe : IDisposable
 	{
 		readonly IWebDriver _w;
-		readonly FileInfo _ffPath;
-		readonly Process _tor;
-		readonly bool _existingTor = false;
-
+		readonly TorProcess _tp;
+		
 		public TestMe()
 		{
-			_ffPath = new FileInfo(@"C:\Tor Browser\Browser\firefox.exe");
-			Assert.IsTrue(_ffPath.Exists);
-			if(!(_existingTor = TorCheck(_ffPath)))
-				_tor = TorStart(_ffPath);
-
-			TorInitWait();
-
-			var ff = new FirefoxProfile();
-			ff.SetPreference("network.proxy.type", 1);
-			ff.SetPreference("network.proxy.socks", "127.0.0.1");
-			ff.SetPreference("network.proxy.socks_port", 9150);
-			_w = new FirefoxDriver(ff);
+			_tp = new TorProcess();
+			Assert.IsNotNull(_tp.Start());
+			Assert.IsTrue(_tp.InitWait());
+			_w = new TorBrowserDriver(_tp);
 			_w.Navigate().GoToUrl("http://condenast.avature.net/careers");
-		}
-
-		static readonly Regex TOR_OK = new Regex(@"<h1[^>]*>\s*congratulations", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-		static readonly Regex FF_TOR = new Regex(@"^\s*Firefox", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-		static readonly Regex BRW_TOR = new Regex(@"\WTor\s*Browser\W", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-		bool TorCheck(FileInfo path)
-		{
-			Process[] processes = Process.GetProcesses();
-			CollectionAssert.IsNotEmpty(processes);
-			Process[] ffs = (from p in processes
-							 where FF_TOR.IsMatch(p.ProcessName) 
-								&& p.MainModule != null
-								&& !string.IsNullOrWhiteSpace(p.MainModule.FileName)
-								&& (string.Compare(p.MainModule.FileName, path.FullName, true) == 0 || BRW_TOR.IsMatch(p.MainModule.FileName))
-							 select p).ToArray();
-			return ffs != null && ffs.Count() > 0;
-		}
-
-		Process TorStart(FileInfo path)
-		{
-			var tor = new Process();
-			tor.StartInfo.FileName = path.FullName;
-			tor.StartInfo.Arguments = "-n";
-			tor.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
-			Assert.IsTrue(tor.Start());
-			return tor;
-		}
-
-		void TorInitWait()
-		{
-			using (WebClient client = new WebClient())
-			{
-				client.Proxy = new SocksWebProxy();
-				const string url = "https://check.torproject.org/";
-				string html;
-				int count = 0;
-				do
-				{
-					if(count > 0)
-						Thread.Sleep(TimeSpan.FromSeconds(5));
-
-					html = client.DownloadString(url);
-					count++;
-				}
-				while (!TOR_OK.IsMatch(html));
-			}
 		}
 
 		[Test]
@@ -102,13 +45,21 @@ namespace Abot.Selenium
 			}
 		}
 
+		~TestMe() { Dispose(); }
+		int _disposing = 0;
 		[OneTimeTearDown]
 		public void Dispose()
 		{
-			_w.Quit();
-			_w.Dispose();
-			if (!_existingTor && _tor != null)
-				_tor.Dispose();
+			if (Interlocked.CompareExchange(ref _disposing, 1, 0) == 0)
+			{
+				if (_w != null)
+				{
+					_w.Quit();
+					_w.Dispose();
+				}
+				if (_tp != null)
+					_tp.Dispose();
+			}
 		}
 	}
 }
