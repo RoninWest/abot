@@ -23,7 +23,7 @@ namespace Abot.Util
     [Serializable]
     public class MemoryManager : IMemoryManager
     {
-        static ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger(typeof(MemoryManager));
         IMemoryMonitor _memoryMonitor;
 
         public MemoryManager(IMemoryMonitor memoryMonitor)

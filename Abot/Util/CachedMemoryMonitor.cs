@@ -7,7 +7,7 @@ namespace Abot.Util
     [Serializable]
     public class CachedMemoryMonitor : IMemoryMonitor, IDisposable
     {
-        static ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger(typeof(CachedMemoryMonitor));
         IMemoryMonitor _memoryMonitor;
         Timer _usageRefreshTimer;
         int _cachedCurrentUsageInMb;

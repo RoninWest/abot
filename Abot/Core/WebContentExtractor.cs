@@ -17,7 +17,7 @@ namespace Abot.Core
     [Serializable]
     public class WebContentExtractor : IWebContentExtractor
     {
-        static ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger(typeof(WebContentExtractor));
 
         public virtual PageContent GetContent(WebResponse response)
         {

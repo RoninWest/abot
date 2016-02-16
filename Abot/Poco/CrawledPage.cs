@@ -11,7 +11,7 @@ namespace Abot.Poco
     [Serializable]
     public class CrawledPage : PageToCrawl
     {
-        ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger(typeof(CrawledPage));
 
         Lazy<HtmlDocument> _htmlDocument;
         Lazy<CQ> _csQueryDocument;

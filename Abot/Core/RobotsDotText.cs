@@ -25,7 +25,7 @@ namespace Abot.Core
     [Serializable]
     public class RobotsDotText : IRobotsDotText
     {
-        ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger(typeof(RobotsDotText));
         IRobots _robotsDotTextUtil = null;
         Uri _rootUri = null;
 

@@ -17,7 +17,7 @@ namespace Abot.Poco
         public byte[] Bytes { get; set; }
 
         /// <summary>
-        /// String representation of the charset/encoding
+        /// String representation of the char-set/encoding
         /// </summary>
         public string Charset { get; set; }
 

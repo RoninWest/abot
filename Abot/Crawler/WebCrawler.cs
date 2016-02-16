@@ -109,7 +109,7 @@ namespace Abot.Crawler
     [Serializable]
     public abstract class WebCrawler : IWebCrawler
     {
-        static ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger(typeof(WebCrawler));
         protected bool _crawlComplete = false;
         protected bool _crawlStopReported = false;
         protected bool _crawlCancellationReported = false;

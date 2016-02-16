@@ -35,7 +35,7 @@ namespace Abot.Core
     [Serializable]
     public class DomainRateLimiter : IDomainRateLimiter
     {
-        static ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger(typeof(DomainRateLimiter));
         ConcurrentDictionary<string, IRateLimiter> _rateLimiterLookup = new ConcurrentDictionary<string, IRateLimiter>();
         long _defaultMinCrawlDelayInMillisecs;
 

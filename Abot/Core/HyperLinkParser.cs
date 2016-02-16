@@ -21,7 +21,7 @@ namespace Abot.Core
     [Serializable]
     public abstract class HyperLinkParser : IHyperLinkParser
     {
-        protected ILog _logger = LogManager.GetLogger("AbotLogger");
+        static protected readonly ILog _logger = LogManager.GetLogger(typeof(HyperLinkParser));
         protected CrawlConfiguration _config;
         protected Func<string, string> _cleanURLFunc;
 

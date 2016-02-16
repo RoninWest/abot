@@ -29,7 +29,7 @@ namespace Abot.Core
     [Serializable]
     public class PageRequester : IPageRequester
     {
-        static readonly ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger(typeof(PageRequester));
 
         readonly protected CrawlConfiguration _config;
         readonly protected IWebContentExtractor _extractor;
