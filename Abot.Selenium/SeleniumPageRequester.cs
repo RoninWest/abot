@@ -101,8 +101,12 @@ namespace Abot.Selenium
 			{
 				Text = _driver.PageSource,
 			};
-			content.Charset = GetCharsetFromBody(content.Text);
-			content.Encoding = GetEncoding(content.Charset);
+			if(content.Charset == null)
+				content.Charset = GetCharsetFromBody(content.Text);
+			if (content.Charset == null)
+				content.Charset = Encoding.Default.WebName;
+			if(content.Encoding == null)
+				content.Encoding = GetEncoding(content.Charset);
 
 			return pg;
 		}
