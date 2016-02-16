@@ -69,6 +69,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DriverTest.cs" />
+    <Compile Include="SeleniumPageRequester.cs" />
     <Compile Include="TorBrowserDriver.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
-using System.IO;
-using System.Net;
-using System.Diagnostics;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -19,7 +14,7 @@ namespace Abot.Selenium
 	[TestFixture]
 	public class DriverTest : IDisposable
 	{
-		readonly IWebDriver _w;
+		readonly IWebDriver _driver;
 		readonly TorProcess _tp;
 		
 		public DriverTest()
@@ -27,18 +22,20 @@ namespace Abot.Selenium
 			_tp = new TorProcess();
 			Assert.IsNotNull(_tp.Start());
 			Assert.IsTrue(_tp.InitWait());
-			_w = new TorBrowserDriver(_tp);
+			_driver = new TorBrowserDriver(_tp);
+			//_driver = new FirefoxDriver();
 		}
 
 		[Explicit]
 		[TestCase("http://condenast.avature.net/careers", ".jobList .jobResultItem A")]
+		[TestCase("http://testblank", "#iisstart", IgnoreReason = "local test only")]
 		public void ClickLink(string url, string selector)
 		{
 			Assert.That(!string.IsNullOrWhiteSpace(url));
 			Assert.That(!string.IsNullOrWhiteSpace(selector));
 
-			_w.Navigate().GoToUrl(url);
-			IEnumerable<IWebElement> links = _w.FindElements(By.CssSelector(selector));
+			_driver.Navigate().GoToUrl(url);
+			IEnumerable<IWebElement> links = _driver.FindElements(By.CssSelector(selector));
 			CollectionAssert.IsNotEmpty(links);
 			IWebElement el = links.FirstOrDefault();
 			Assert.IsNotNull(el);
@@ -56,11 +53,11 @@ namespace Abot.Selenium
 		{
 			if (Interlocked.CompareExchange(ref _disposing, 1, 0) == 0)
 			{
-				if (_w != null)
+				if (_driver != null)
 				{
 					try {
-						_w.Quit();
-						_w.Dispose();
+						_driver.Quit();
+						_driver.Dispose();
 					}
 					catch(Exception ex)
 					{

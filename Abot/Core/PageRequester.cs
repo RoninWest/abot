@@ -29,11 +29,11 @@ namespace Abot.Core
     [Serializable]
     public class PageRequester : IPageRequester
     {
-        static ILog _logger = LogManager.GetLogger("AbotLogger");
+        static readonly ILog _logger = LogManager.GetLogger("AbotLogger");
 
-        protected CrawlConfiguration _config;
-        protected IWebContentExtractor _extractor;
-        protected CookieContainer _cookieContainer = new CookieContainer();
+        readonly protected CrawlConfiguration _config;
+        readonly protected IWebContentExtractor _extractor;
+        readonly protected CookieContainer _cookieContainer = new CookieContainer();
 
         public PageRequester(CrawlConfiguration config)
             : this(config, null)
@@ -41,7 +41,7 @@ namespace Abot.Core
 
         }
 
-        public PageRequester(CrawlConfiguration config, IWebContentExtractor contentExtractor)
+		public PageRequester(CrawlConfiguration config, IWebContentExtractor contentExtractor)
         {
             if (config == null)
                 throw new ArgumentNullException("config");
@@ -247,8 +247,8 @@ namespace Abot.Core
             {
                 _extractor.Dispose();
             }
-            _cookieContainer = null;
-            _config = null;
+            //_cookieContainer = null;
+            //_config = null;
         }
     }
 }
