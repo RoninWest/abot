@@ -29,21 +29,21 @@ namespace Abot.Selenium
 			: base(MakeProfile(cfg))
 		{ }
 
-		static FirefoxProfile MakeProfile(TorProcess tor)
+		public static FirefoxProfile MakeProfile(TorProcess tor)
 		{
 			if (tor == null)
 				throw new ArgumentNullException("tor");
 
 			return MakeProfile(tor.ClientProxy);
 		}
-		static FirefoxProfile MakeProfile(SocksWebProxy prxy)
+		public static FirefoxProfile MakeProfile(SocksWebProxy prxy)
 		{
 			if (prxy == null)
 				throw new ArgumentNullException("prxy");
 
 			return MakeProfile(prxy.Config);
 		}
-		static FirefoxProfile MakeProfile(IProxyConfig cfg)
+		public static FirefoxProfile MakeProfile(IProxyConfig cfg)
 		{
 			if (cfg == null)
 				throw new ArgumentNullException("cfg");
