@@ -38,7 +38,6 @@ namespace Abot.Core
         public PageRequester(CrawlConfiguration config)
             : this(config, null)
         {
-
         }
 
 		public PageRequester(CrawlConfiguration config, IWebContentExtractor contentExtractor)
