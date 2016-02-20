@@ -126,6 +126,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Abot.nuspec" />
     <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

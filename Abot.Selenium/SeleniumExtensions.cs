@@ -68,7 +68,7 @@ namespace Abot.Selenium
 		{
 			if (element == null)
 				throw new ArgumentNullException("element");
-
+			
 			if (element is SelectElement)
 				return element as SelectElement;
 			else
@@ -187,13 +187,13 @@ namespace Abot.Selenium
 			return ok;
 		}
 
-		static readonly Regex PRICE_RE = new Regex(@"^\W?\s*(\d+(?:[\.,]\d{2}|))", RegexOptions.Compiled);
+		static readonly Regex CURRENCY_RE = new Regex(@"^\W?\s*(\d+(?:[\.,]\d{2}|))", RegexOptions.Compiled);
 
-		public static decimal ParsePrice(this string value, decimal defaultValue = 0m)
+		public static decimal ParseCurrencyAmount(this string value, decimal defaultValue = 0m)
 		{
 			if (!string.IsNullOrWhiteSpace(value))
 			{
-				Match m = PRICE_RE.Match(value);
+				Match m = CURRENCY_RE.Match(value);
 				if (m.Success && m.Groups.Count > 1)
 				{
 					decimal price;
