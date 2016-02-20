@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Abot.Selenium\Abot.Selenium.csproj">
+      <Project>{ea22fccf-bfb2-43d7-914d-ba747a5befe4}</Project>
+      <Name>Abot.Selenium</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Abot\Abot.csproj">
       <Project>{0CDCD537-4B0E-4514-966F-F425CDC92BA4}</Project>
       <Name>Abot</Name>
