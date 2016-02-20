@@ -16,10 +16,12 @@
 		<copyright>Copyright 2015 $author$</copyright>
 		<tags>crawler robot spider</tags>
 	</metadata>
-	<!--<files>
+	<files>
 		<file src="bin\release\WebDriver.dll" target="lib\net40\" />
 		<file src="bin\release\WebDriver.Support.dll" target="lib\net40\" />
 		<file src="bin\release\ThoughtWorks.Selenium.Core.dll" target="lib\net40\" />
 		<file src="bin\release\Selenium.WebDriverBackedSelenium.dll" target="lib\net40\" />
-	</files>-->
+		<file src="bin\release\chromedriver.exe" target="lib\net40\" />
+		<file src="bin\release\IEDriverServer.exe" target="lib\net40\" />
+	</files>
 </package>
